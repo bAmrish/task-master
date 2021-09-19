@@ -16,13 +16,14 @@
             No due date
           </div>
           <div class="due-date-date-picker">
-            <mat-datepicker-toggle matSuffix [for]="picker">
+            <ngx-mat-datetime-picker #picker [defaultTime]="[8, 0, 0]"
+                                     [enableMeridian]="true"></ngx-mat-datetime-picker>
+            <mat-datepicker-toggle matSuffix [for]="$any(picker)">
               <mat-icon matDatepickerToggleIcon color="primary">event_available</mat-icon>
             </mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
             <!--suppress TypeScriptValidateTypes -->
             <input style="height:0; width: 0; border: 0; padding: 0; margin: 0;"
-                   [matDatepicker]="picker" (dateChange)="onDateSelect($event)">
+                   [ngxMatDatetimePicker]="picker" (dateChange)="onDateSelect($event)">
           </div>
         </div>
       </div>

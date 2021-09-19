@@ -14,6 +14,12 @@ import {MatRadioModule} from "@angular/material/radio";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatNativeDateModule} from "@angular/material/core";
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule
+} from "@angular-material-components/datetime-picker";
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 const MATERIAL_MODULES = [
   MatToolbarModule,
@@ -29,12 +35,17 @@ const MATERIAL_MODULES = [
   MatCheckboxModule,
   MatRadioModule,
   MatExpansionModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatFormFieldModule,
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule,
+  FlexLayoutModule
 ];
 
 @NgModule({
-  imports: [...MATERIAL_MODULES, FlexLayoutModule],
-  exports: [...MATERIAL_MODULES, FlexLayoutModule]
+  imports: [...MATERIAL_MODULES],
+  exports: [...MATERIAL_MODULES]
 })
 export class SharedModule {
 }
