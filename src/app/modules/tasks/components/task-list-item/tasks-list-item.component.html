@@ -1,0 +1,36 @@
+<div class="task-list-item-container" *ngIf="task">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <div class="header-container" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="title-container">
+          <mat-checkbox [checked]="task.status !== statusType.NEW">
+            <div class="task-tile">{{task.title}}</div>
+          </mat-checkbox>
+        </div>
+        <div class="due-date-container" fxLayout="row" fxLayoutAlign="center center">
+          <div class="due-date-label">Due Date:</div>
+          <div class="due-date-value" *ngIf="task.dueDate">
+            {{task.dueDate | date: 'short'}}
+          </div>
+          <div class="due-date-value" *ngIf="!task.dueDate">
+            No due date
+          </div>
+          <div class="due-date-date-picker">
+            <mat-datepicker-toggle matSuffix [for]="picker">
+              <mat-icon matDatepickerToggleIcon color="primary">event_available</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <!--suppress TypeScriptValidateTypes -->
+            <input style="height:0; width: 0; border: 0; padding: 0; margin: 0;"
+                   [matDatepicker]="picker" (dateChange)="onDateSelect($event)">
+          </div>
+        </div>
+      </div>
+
+    </mat-expansion-panel-header>
+    <mat-panel-description>
+      <div class="task-description">{{task.description}}</div>
+    </mat-panel-description>
+  </mat-expansion-panel>
+
+</div>
