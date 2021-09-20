@@ -29,8 +29,10 @@
 
     </mat-expansion-panel-header>
     <mat-panel-description>
-      <div class="task-description">{{task.description}}</div>
+      <tm-task-description
+        [description]="task.description || ''"
+        [taskId]="task.id">
+      </tm-task-description>
     </mat-panel-description>
   </mat-expansion-panel>
-
 </div>

@@ -6,13 +6,15 @@ import {CommonModule} from "@angular/common";
 import {TasksListItemComponent} from "./components/task-list-item/tasks-list-item.component";
 import {TaskListComponent} from "./components/task-list/task-list.component";
 import {TaskTitleComponent} from "./components/task-title/task-title.component";
+import {TaskDescriptionComponent} from "./components/task-description/task-description.component";
 
 @NgModule({
   declarations: [
     TasksComponent,
     TaskListComponent,
     TasksListItemComponent,
-    TaskTitleComponent
+    TaskTitleComponent,
+    TaskDescriptionComponent
   ],
   imports: [TasksRoutingModule, SharedModule, CommonModule]
 })
