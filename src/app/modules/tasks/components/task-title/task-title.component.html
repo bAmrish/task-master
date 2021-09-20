@@ -1,0 +1,17 @@
+<div class="title-container">
+  <div class="title" *ngIf="isEditable; then editable else nonEditable"></div>
+</div>
+
+<ng-template #editable>
+  <div class="editable">
+    <input value="{{title}}" #input (keydown)="$event.stopPropagation()"  (mouseup)="$event.stopPropagation()" (click)="$event.stopPropagation()">
+  </div>
+</ng-template>
+
+<ng-template #nonEditable>
+  <div class="non-editable" fxLayout="row" fxLayoutAlign="start center"
+       (mousedown)="toggleEdit()">
+    <mat-icon color="primary">edit</mat-icon>
+    <div class="title-text">{{title}}</div>
+  </div>
+</ng-template>

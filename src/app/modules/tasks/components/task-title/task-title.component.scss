@@ -1,0 +1,27 @@
+.title-container {
+  display: flex;
+  flex-grow: 1;
+  .non-editable {
+    mat-icon {
+      margin-top: 5px;
+      font-size: 16px;
+    }
+
+    .title-text {
+      cursor: text;
+    }
+  }
+
+  .editable {
+    margin: 0 10px;
+    display: flex;
+    flex-grow: 1;
+    input {
+      flex-grow: 1;
+      font-size: 15px;
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  }
+}
