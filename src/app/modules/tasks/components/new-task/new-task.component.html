@@ -1,0 +1,26 @@
+<mat-card class="new-task-container">
+  <mat-card-content class="new-task-content">
+    <form class="new-task-form" (ngSubmit)="onAdd()">
+      <mat-form-field floatLabel="auto" appearance="outline">
+        <mat-label class="new-task-label">New Task</mat-label>
+        <input name="title" class="new-task-title" matInput [(ngModel)]="title">
+      </mat-form-field>
+      <button mat-icon-button type="submit">
+        <mat-icon color="primary" (click)="onAdd()">add</mat-icon>
+      </button>
+      <div class="due-date-container" fxLayout="row" fxLayoutAlign="center center">
+        <div class="due-date-date-picker">
+          <ngx-mat-datetime-picker #picker [defaultTime]="[8, 0, 0]"
+                                   [enableMeridian]="true"></ngx-mat-datetime-picker>
+          <mat-datepicker-toggle matSuffix [for]="$any(picker)">
+            <mat-icon matDatepickerToggleIcon color="primary">event_available</mat-icon>
+          </mat-datepicker-toggle>
+          <!--suppress TypeScriptValidateTypes -->
+          <input name="due-date" [(ngModel)]="dueDate"
+                 [ngxMatDatetimePicker]="picker">
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+
+</mat-card>

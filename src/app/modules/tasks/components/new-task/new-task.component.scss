@@ -1,0 +1,28 @@
+.new-task-container {
+  .new-task-content {
+    form {
+      display: flex;
+      align-items: center;
+
+      .due-date-date-picker {
+        input {
+          height: 0;
+          width: 0;
+          border: 0;
+          padding: 0;
+          margin: 0;
+        }
+      }
+    }
+
+    align-items: center;
+
+    mat-form-field {
+      flex-grow: 1;
+    }
+  }
+}
+
+::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0;
+}

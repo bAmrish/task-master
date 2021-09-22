@@ -1,8 +1,14 @@
 <div class="app-container">
   <div class="navigation-container">
     <mat-toolbar class="toolbar" color="warn">
-      <mat-icon><img class="logo" alt="logo" src="assets/images/logo.png"></mat-icon>
+      <mat-icon class="logo"><img alt="logo" src="assets/images/logo.png"></mat-icon>
       <div>Task Master</div>
+      <span class="spacer"></span>
+      <div>
+        <button mat-mini-fab color="primary" (click)="sendNotification()">
+          <mat-icon>notifications</mat-icon>
+        </button>
+      </div>
     </mat-toolbar>
   </div>
   <div class="router-container">

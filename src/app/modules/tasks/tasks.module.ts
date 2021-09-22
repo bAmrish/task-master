@@ -7,6 +7,7 @@ import {TasksListItemComponent} from "./components/task-list-item/tasks-list-ite
 import {TaskListComponent} from "./components/task-list/task-list.component";
 import {TaskTitleComponent} from "./components/task-title/task-title.component";
 import {TaskDescriptionComponent} from "./components/task-description/task-description.component";
+import {NewTaskComponent} from "./components/new-task/new-task.component";
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import {TaskDescriptionComponent} from "./components/task-description/task-descr
     TaskListComponent,
     TasksListItemComponent,
     TaskTitleComponent,
-    TaskDescriptionComponent
+    TaskDescriptionComponent,
+    NewTaskComponent
   ],
   imports: [TasksRoutingModule, SharedModule, CommonModule]
 })

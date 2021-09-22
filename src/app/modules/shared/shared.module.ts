@@ -20,6 +20,7 @@ import {
   NgxMatTimepickerModule
 } from "@angular-material-components/datetime-picker";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import {FormsModule} from "@angular/forms";
 
 const MATERIAL_MODULES = [
   MatToolbarModule,
@@ -40,7 +41,8 @@ const MATERIAL_MODULES = [
   NgxMatDatetimePickerModule,
   NgxMatNativeDateModule,
   NgxMatTimepickerModule,
-  FlexLayoutModule
+  FlexLayoutModule,
+  FormsModule
 ];
 
 @NgModule({

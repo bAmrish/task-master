@@ -1,14 +1,12 @@
 import {Task} from "../models/Task";
-import {Observable, of} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {Injectable} from "@angular/core";
 import {TaskStatusType} from "../models/task-status.type";
 
 @Injectable({providedIn: 'root'})
 export class TaskService {
 
-  getTasks(): Observable<Task[]> {
-
-    const task1description = `
+  private TASK_1_DESC: string = `
       Said female of can't you're him were make called living place were heaven land air.
       Without saying heaven every thing, replenish. Whose.
       Morning form isn't earth one don't they're. Firmament man so forth second.
@@ -17,20 +15,28 @@ export class TaskService {
       They're isn't brought fifth open over for fly lights, it. Abundantly seed. Gathering.
       Whose have set abundantly man replenish don't god saw life fruitful sixth stars fourth.
       Morning bring fly he living whose upon isn't called.
-  `;
+ `;
 
-    const tasks: Task[] = [
-      this.newTask('Buy Milk', task1description, TaskStatusType.NEW),
-      this.newTask('get work done', 'Finally get some work done! ', TaskStatusType.DONE)
-    ];
+  private tasks: Task[] = [
+    this.newTask('Buy Milk', this.TASK_1_DESC, TaskStatusType.NEW),
+    this.newTask('get work done', 'Finally get some work done! ', TaskStatusType.DONE)
+  ];
 
-    return of(tasks);
+  private tasks$: BehaviorSubject<Task[]> = new BehaviorSubject<Task[]>(this.tasks);
+
+  getTasks(): Observable<Task[]> {
+    return this.tasks$;
   }
 
   newTask(title = '', description = '', status: TaskStatusType): Task {
     return {
       id: this.uuidv4(), title, description, status, createdDate: new Date()
     }
+  }
+
+  add(task: Task) {
+    this.tasks.push(task);
+    this.tasks$.next(this.tasks);
   }
 
   // noinspection SpellCheckingInspection
