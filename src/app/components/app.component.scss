@@ -1,10 +1,13 @@
 .app-container {
   .toolbar {
-    mat-icon {
+    .spacer {
+      flex: 1 1 auto;
+    }
+    .logo {
       margin-right: 30px;
       margin-top: -10px;
     }
-    img.logo {
+    .logo img {
       width: 30px;
     }
   }

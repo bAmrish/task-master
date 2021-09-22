@@ -1,0 +1,13 @@
+<div class="task-description-container">
+  <div *ngIf="richFormat then richFormatTemplate else simpleFormatTemplate"></div>
+</div>
+<ng-template #richFormatTemplate>
+  <div class="task-description-editor" id="{{id}}">{{description}}</div>
+</ng-template>
+<ng-template #simpleFormatTemplate>
+  <div class="task-description-text-area">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <textarea matInput cdkTextareaAutosize cdkAutosizeMaxRows="10">{{description}}</textarea>
+    </mat-form-field>
+  </div>
+</ng-template>
