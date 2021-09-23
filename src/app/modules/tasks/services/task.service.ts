@@ -7,14 +7,10 @@ import {TaskStatusType} from "../models/task-status.type";
 export class TaskService {
 
   private TASK_1_DESC: string = `
-      Said female of can't you're him were make called living place were heaven land air.
-      Without saying heaven every thing, replenish. Whose.
-      Morning form isn't earth one don't they're. Firmament man so forth second.
-      Likeness. One divided all Man days gathered subdue life forth can't set shall can't fowl.
-      After Whose that fourth. So winged tree Image face moveth. Isn't behold appear man. Said.
-      They're isn't brought fifth open over for fly lights, it. Abundantly seed. Gathering.
-      Whose have set abundantly man replenish don't god saw life fruitful sixth stars fourth.
-      Morning bring fly he living whose upon isn't called.
+  The public description of sanity takes into account the morality of demographic will.
+  Pedagogic submission of mutiny is not worth to the paragon of excellence.
+
+  - Unknown Source
  `;
 
   private tasks: Task[] = [
