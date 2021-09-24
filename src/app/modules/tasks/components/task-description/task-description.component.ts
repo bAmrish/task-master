@@ -32,7 +32,6 @@ export class TaskDescriptionComponent implements AfterViewInit {
 
   @Input() set taskId(inputTaskId: string) {
     this.id = "editor-" + inputTaskId;
-    console.log(this.id);
   };
 
   ngAfterViewInit() {

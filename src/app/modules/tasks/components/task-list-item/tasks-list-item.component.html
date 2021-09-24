@@ -2,10 +2,19 @@
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <div class="header-container" fxLayout="row" fxLayoutAlign="space-between center">
+
+        <!-- title -->
         <div class="title-container" fxLayout="row" fxLayoutAlign="start center">
           <mat-checkbox [checked]="task.status !== statusType.NEW"></mat-checkbox>
-          <tm-task-title [title]="task.title"></tm-task-title>
+
+          <tm-task-title [title]="task.title"
+                         [isEditable]="editable"
+                         (inputClick)="onInputClick()"
+                         (focusLost)="onFocusLost()">
+          </tm-task-title>
         </div>
+
+        <!-- due date  -->
         <div class="due-date-container" fxLayout="row" fxLayoutAlign="center center">
           <div class="due-date-value" *ngIf="task.dueDate">
             <div>Due: {{task.dueDate | tmDateFormat}}</div>
@@ -22,8 +31,12 @@
                    [ngxMatDatetimePicker]="picker" (dateChange)="onDateSelect($event)">
           </div>
         </div>
+
+        <!-- action toolbar -->
         <div class="action-toolbar">
-          <mat-icon color="primary">edit</mat-icon>
+          <mat-icon color="primary" (click)="onEditClick($event)" (keydown)="$event.stopPropagation()"
+                    (mouseup)="$event.stopPropagation()">edit
+          </mat-icon>
           <mat-icon color="warn" (click)="onDelete()">delete</mat-icon>
         </div>
       </div>

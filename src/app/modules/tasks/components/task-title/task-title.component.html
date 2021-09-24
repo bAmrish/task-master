@@ -4,14 +4,16 @@
 
 <ng-template #editable>
   <div class="editable">
-    <input value="{{title}}" #input (keydown)="$event.stopPropagation()"  (mouseup)="$event.stopPropagation()" (click)="$event.stopPropagation()">
+    <input #input value="{{title}}"
+           (keydown)="$event.stopPropagation()"
+           (mouseup)="$event.stopPropagation()"
+           (click)="$event.stopPropagation()">
   </div>
 </ng-template>
 
 <ng-template #nonEditable>
   <div class="non-editable" fxLayout="row" fxLayoutAlign="start center"
-       (mousedown)="toggleEdit()">
-    <mat-icon color="primary">edit</mat-icon>
+       (mousedown)="onNonEditableTitleClick()">
     <div class="title-text">{{title}}</div>
   </div>
 </ng-template>

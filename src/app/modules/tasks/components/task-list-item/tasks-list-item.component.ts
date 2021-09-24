@@ -10,9 +10,10 @@ import {MatDatetimePickerInputEvent} from "@angular-material-components/datetime
 })
 export class TasksListItemComponent {
   @Input() task: Task | null = null;
-  @Output() delete: EventEmitter<Task> = new EventEmitter<Task>()
+  @Output() delete = new EventEmitter<Task>();
   statusType = TaskStatusType;
 
+  editable = false;
 
   onDateSelect(event: MatDatetimePickerInputEvent<Date>) {
     if (this.task && event && event.value) {
@@ -21,14 +22,30 @@ export class TasksListItemComponent {
   }
 
   removeDueDate() {
-    if(this.task?.dueDate) {
+    if (this.task?.dueDate) {
       this.task.dueDate = undefined;
     }
   }
 
   onDelete() {
-    if(this.task){
+    if (this.task) {
       this.delete.emit(this.task);
     }
   }
+
+  onEditClick(event: Event) {
+    this.editable = true;
+    event.stopPropagation();
+  }
+
+  onFocusLost() {
+    if(this.editable) {
+      setTimeout(() => this.editable = false, 10);
+    }
+  }
+
+  onInputClick() {
+    this.editable = true;
+  }
+
 }

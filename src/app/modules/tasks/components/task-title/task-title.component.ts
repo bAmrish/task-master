@@ -1,13 +1,27 @@
-import {Component, ElementRef, HostListener, Input, ViewChild} from "@angular/core";
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  ViewChild
+} from "@angular/core";
 
 @Component({
   selector: 'tm-task-title',
   templateUrl: './task-title.component.html',
   styleUrls: ['./task-title.component.scss']
 })
-export class TaskTitleComponent {
+export class TaskTitleComponent implements OnChanges {
   @Input() title: string = '';
-  isEditable = false;
+  @Input() isEditable = false;
+
+  @Output() inputClick = new EventEmitter<string>();
+  @Output() focusLost = new EventEmitter<string>();
+
   input: HTMLInputElement | null = null;
 
   // @ts-ignore
@@ -19,16 +33,25 @@ export class TaskTitleComponent {
     }
   };
 
-  toggleEdit() {
-    this.isEditable = !this.isEditable;
-    setTimeout(() => this.input?.focus(), 1)
+  ngOnChanges(changes: SimpleChanges) {
+    for (const property in changes) {
+      if (property === 'isEditable') {
+        const change = changes[property];
+        if (change.currentValue) {
+          setTimeout(() => this.input?.focus(), 1);
+        }
+      }
+    }
+  }
 
+  onNonEditableTitleClick() {
+    this.inputClick.emit(this.title);
   }
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event) {
     if (event.target != this.input) {
-      this.isEditable = false;
+      this.focusLost.emit(this.title);
     }
   }
 }
