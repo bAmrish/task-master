@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {Task} from "../../models/Task";
 
 @Component({
@@ -8,4 +8,10 @@ import {Task} from "../../models/Task";
 })
 export class TaskListComponent{
   @Input() tasks: Task[] = [];
+  @Output() delete: EventEmitter<Task> = new EventEmitter<Task>();
+
+
+  onTaskDelete(task: Task) {
+    this.delete.emit(task);
+  }
 }

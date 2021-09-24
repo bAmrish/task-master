@@ -12,8 +12,8 @@
             <mat-icon (click)="removeDueDate()">close</mat-icon>
           </div>
           <div class="due-date-date-picker">
-            <ngx-mat-datetime-picker #picker [defaultTime]="[8, 0, 0]"
-                                     [enableMeridian]="true"></ngx-mat-datetime-picker>
+            <ngx-mat-datetime-picker #picker [defaultTime]="[11, 59, 59]"
+                                     [enableMeridian]="true" [hideTime]="true"></ngx-mat-datetime-picker>
             <mat-datepicker-toggle matSuffix [for]="$any(picker)">
               <mat-icon matDatepickerToggleIcon color="primary">event_available</mat-icon>
             </mat-datepicker-toggle>
@@ -21,6 +21,10 @@
             <input style="height:0; width: 0; border: 0; padding: 0; margin: 0;"
                    [ngxMatDatetimePicker]="picker" (dateChange)="onDateSelect($event)">
           </div>
+        </div>
+        <div class="action-toolbar">
+          <mat-icon color="primary">edit</mat-icon>
+          <mat-icon color="warn" (click)="onDelete()">delete</mat-icon>
         </div>
       </div>
 

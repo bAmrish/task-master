@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {Task} from "../../models/Task";
 import {TaskStatusType} from "../../models/task-status.type";
 import {MatDatetimePickerInputEvent} from "@angular-material-components/datetime-picker";
@@ -10,6 +10,7 @@ import {MatDatetimePickerInputEvent} from "@angular-material-components/datetime
 })
 export class TasksListItemComponent {
   @Input() task: Task | null = null;
+  @Output() delete: EventEmitter<Task> = new EventEmitter<Task>()
   statusType = TaskStatusType;
 
 
@@ -22,6 +23,12 @@ export class TasksListItemComponent {
   removeDueDate() {
     if(this.task?.dueDate) {
       this.task.dueDate = undefined;
+    }
+  }
+
+  onDelete() {
+    if(this.task){
+      this.delete.emit(this.task);
     }
   }
 }

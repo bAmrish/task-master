@@ -36,6 +36,25 @@ export class TaskService {
     this.tasks$.next(this.tasks);
   }
 
+  delete(task: Task) {
+    if (!task || !task.id) {
+      return;
+    }
+
+    const deletedTasks = this.tasks.filter(t => t.id === task.id);
+    if (deletedTasks.length == 0) {
+      console.warn("No task found in the list.");
+      return;
+    }
+    if (deletedTasks.length > 1) {
+      console.warn("Multiple tasks found. Skipping deleting.");
+      return;
+    }
+    const deletedTask = deletedTasks[0];
+    const deletedTaskId = this.tasks.indexOf(deletedTask);
+    this.tasks.splice(deletedTaskId, 1);
+  }
+
   // noinspection SpellCheckingInspection
   private uuidv4(): string {
     return ("1e7-1e3-4e3-8e3-1e11").replace(/[018]/g, (c): string => {
