@@ -21,6 +21,7 @@ import {
 } from "@angular-material-components/datetime-picker";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {FormsModule} from "@angular/forms";
+import {DateFormatPipe} from "./pipes/date-format.pipe";
 
 const MATERIAL_MODULES = [
   MatToolbarModule,
@@ -46,8 +47,9 @@ const MATERIAL_MODULES = [
 ];
 
 @NgModule({
+  declarations: [DateFormatPipe],
   imports: [...MATERIAL_MODULES],
-  exports: [...MATERIAL_MODULES]
+  exports: [...MATERIAL_MODULES, DateFormatPipe]
 })
 export class SharedModule {
 }

@@ -1,17 +1,18 @@
 <mat-card class="new-task-container">
   <mat-card-content class="new-task-content">
-    <form class="new-task-form" (ngSubmit)="onAdd()">
+    <form class="new-task-form" (ngSubmit)="onAdd()" #newTaskForm=ngForm>
       <mat-form-field floatLabel="auto" appearance="outline">
         <mat-label class="new-task-label">New Task</mat-label>
-        <input name="title" class="new-task-title" matInput [(ngModel)]="title">
+        <input required name="title" class="new-task-title" matInput [(ngModel)]="title">
+        <mat-error>Add some text to your task!</mat-error>
       </mat-form-field>
       <button mat-icon-button type="submit">
-        <mat-icon color="primary" (click)="onAdd()">add</mat-icon>
+        <mat-icon color="primary">add</mat-icon>
       </button>
       <div class="due-date-container" fxLayout="row" fxLayoutAlign="center center">
         <div class="due-date-date-picker">
-          <ngx-mat-datetime-picker #picker [defaultTime]="[8, 0, 0]"
-                                   [enableMeridian]="true"></ngx-mat-datetime-picker>
+          <ngx-mat-datetime-picker #picker [defaultTime]="[23, 59, 59]"
+                                   [enableMeridian]="true" [hideTime]="true"></ngx-mat-datetime-picker>
           <mat-datepicker-toggle matSuffix [for]="$any(picker)">
             <mat-icon matDatepickerToggleIcon color="primary">event_available</mat-icon>
           </mat-datepicker-toggle>
@@ -21,6 +22,11 @@
         </div>
       </div>
     </form>
+    <div class="due-date" *ngIf="dueDate" >
+      <label class="due-date-value" matTooltip="{{dueDate | date: 'fullDate'}}">
+        Due {{dueDate | tmDateFormat}}
+      </label>
+      <mat-icon (click)="removeDueDate()">close</mat-icon>
+    </div>
   </mat-card-content>
-
 </mat-card>

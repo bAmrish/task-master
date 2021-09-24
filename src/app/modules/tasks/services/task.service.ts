@@ -21,6 +21,7 @@ export class TaskService {
   private tasks$: BehaviorSubject<Task[]> = new BehaviorSubject<Task[]>(this.tasks);
 
   getTasks(): Observable<Task[]> {
+    this.tasks[0].dueDate = new Date("2021-09-28 11:59:59");
     return this.tasks$;
   }
 

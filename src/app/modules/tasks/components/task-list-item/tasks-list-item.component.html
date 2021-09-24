@@ -8,9 +8,9 @@
         </div>
         <div class="due-date-container" fxLayout="row" fxLayoutAlign="center center">
           <div class="due-date-value" *ngIf="task.dueDate">
-            Due: {{task.dueDate | date: 'short'}}
+            <div>Due: {{task.dueDate | tmDateFormat}}</div>
+            <mat-icon (click)="removeDueDate()">close</mat-icon>
           </div>
-<!--          <div class="due-date-value" *ngIf="!task.dueDate">-</div>-->
           <div class="due-date-date-picker">
             <ngx-mat-datetime-picker #picker [defaultTime]="[8, 0, 0]"
                                      [enableMeridian]="true"></ngx-mat-datetime-picker>

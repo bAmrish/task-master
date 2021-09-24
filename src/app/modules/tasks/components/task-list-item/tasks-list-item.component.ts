@@ -18,4 +18,10 @@ export class TasksListItemComponent {
       this.task.dueDate = event.value;
     }
   }
+
+  removeDueDate() {
+    if(this.task?.dueDate) {
+      this.task.dueDate = undefined;
+    }
+  }
 }
