@@ -14,20 +14,20 @@ export class TaskService {
  `;
 
   private tasks: Task[] = [
-    this.newTask('Buy Milk', this.TASK_1_DESC, TaskStatusType.NEW),
-    this.newTask('get work done', 'Finally get some work done! ', TaskStatusType.DONE)
+    this.new('Buy Milk', this.TASK_1_DESC, TaskStatusType.NEW),
+    this.new('get work done', 'Finally get some work done! ', TaskStatusType.DONE)
   ];
 
   private tasks$: BehaviorSubject<Task[]> = new BehaviorSubject<Task[]>(this.tasks);
 
-  getTasks(): Observable<Task[]> {
+  getAll(): Observable<Task[]> {
     this.tasks[0].dueDate = new Date("2021-09-28 11:59:59");
     return this.tasks$;
   }
 
-  newTask(title = '', description = '', status: TaskStatusType): Task {
+  new(title = '', description = '', status: TaskStatusType): Task {
     return {
-      id: this.uuidv4(), title, description, status, createdDate: new Date()
+      id: this.uuidv4(), title, description, status, createdDate: new Date(), isDone: false
     }
   }
 
@@ -37,22 +37,38 @@ export class TaskService {
   }
 
   delete(task: Task) {
-    if (!task || !task.id) {
+
+    const deletedTask: Task | null = this.getTask(task.id);
+
+    if (deletedTask == null) {
       return;
     }
 
-    const deletedTasks = this.tasks.filter(t => t.id === task.id);
-    if (deletedTasks.length == 0) {
-      console.warn("No task found in the list.");
-      return;
-    }
-    if (deletedTasks.length > 1) {
-      console.warn("Multiple tasks found. Skipping deleting.");
-      return;
-    }
-    const deletedTask = deletedTasks[0];
     const deletedTaskId = this.tasks.indexOf(deletedTask);
     this.tasks.splice(deletedTaskId, 1);
+  }
+
+  save(task: Task) {
+
+  }
+
+  private getTask(taskId: string): Task | null {
+    if (!taskId) {
+      return null;
+    }
+
+    const tasks = this.tasks.filter(t => t.id === taskId);
+
+    if (tasks.length == 0) {
+      console.warn("No task found.");
+      return null;
+    }
+
+    if (tasks.length > 1) {
+      console.warn("Multiple Task found.");
+      return null;
+    }
+    return tasks[0];
   }
 
   // noinspection SpellCheckingInspection

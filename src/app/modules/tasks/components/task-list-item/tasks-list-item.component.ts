@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {Task} from "../../models/Task";
-import {TaskStatusType} from "../../models/task-status.type";
 import {MatDatetimePickerInputEvent} from "@angular-material-components/datetime-picker";
 
 @Component({
@@ -11,7 +10,6 @@ import {MatDatetimePickerInputEvent} from "@angular-material-components/datetime
 export class TasksListItemComponent {
   @Input() task: Task | null = null;
   @Output() delete = new EventEmitter<Task>();
-  statusType = TaskStatusType;
 
   editable = false;
 
@@ -39,13 +37,13 @@ export class TasksListItemComponent {
   }
 
   onFocusLost() {
-    if(this.editable) {
+    if (this.editable) {
       setTimeout(() => this.editable = false, 10);
+      console.log(this.task);
     }
   }
 
   onInputClick() {
     this.editable = true;
   }
-
 }

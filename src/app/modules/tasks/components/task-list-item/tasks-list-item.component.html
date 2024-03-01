@@ -5,12 +5,16 @@
 
         <!-- title -->
         <div class="title-container" fxLayout="row" fxLayoutAlign="start center">
-          <mat-checkbox [checked]="task.status !== statusType.NEW"></mat-checkbox>
+          <mat-checkbox [(ngModel)]="task.isDone"
+                        (mouseup)="$event.stopPropagation()"
+                        (click)="$event.stopPropagation()">
+          </mat-checkbox>
 
           <tm-task-title [title]="task.title"
                          [isEditable]="editable"
                          (inputClick)="onInputClick()"
-                         (focusLost)="onFocusLost()">
+                         (focusLost)="onFocusLost()"
+                         [done]="task.isDone">
           </tm-task-title>
         </div>
 

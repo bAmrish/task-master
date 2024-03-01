@@ -18,9 +18,10 @@ import {
 export class TaskTitleComponent implements OnChanges {
   @Input() title: string = '';
   @Input() isEditable = false;
-
+  @Input() done = false;
   @Output() inputClick = new EventEmitter<string>();
   @Output() focusLost = new EventEmitter<string>();
+  @Output() titleChange = new EventEmitter<string>();
 
   input: HTMLInputElement | null = null;
 

@@ -1,19 +1,19 @@
 <div class="title-container">
-  <div class="title" *ngIf="isEditable; then editable else nonEditable"></div>
+  <div class="title" *ngIf="isEditable; then editableTitle else nonEditableTitle"></div>
 </div>
 
-<ng-template #editable>
+<ng-template #editableTitle>
   <div class="editable">
-    <input #input value="{{title}}"
+    <input #input [(ngModel)]="title"
            (keydown)="$event.stopPropagation()"
            (mouseup)="$event.stopPropagation()"
            (click)="$event.stopPropagation()">
   </div>
 </ng-template>
 
-<ng-template #nonEditable>
+<ng-template #nonEditableTitle>
   <div class="non-editable" fxLayout="row" fxLayoutAlign="start center"
        (mousedown)="onNonEditableTitleClick()">
-    <div class="title-text">{{title}}</div>
+    <div class="title-text" [ngClass]="{done: done}">{{title}}</div>
   </div>
 </ng-template>

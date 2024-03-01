@@ -22,7 +22,7 @@ export class NewTaskComponent {
     if (!this.form.valid) {
       return;
     }
-    let task = this.taskService.newTask(this.title, '', TaskStatusType.NEW);
+    let task = this.taskService.new(this.title, '', TaskStatusType.NEW);
     if (this.dueDate != null) {
       task.dueDate = this.dueDate;
     }
